@@ -1,0 +1,604 @@
+{
+  "openapi": "3.0.0",
+  "info": { "title": "Dakota API's", "version": "1.0.0" },
+  "servers": [{ "url": "https://marketplace-as-a-service.herokuapp.com/" }],
+  "paths":
+    {
+      "/index.php/api/dakota":
+        {
+          "post":
+            {
+              "tags": ["Contacts"],
+              "summary": "Contact Management API",
+              "description": "This API allows listing all contact object records with options to filter, sort, and paginate the results.",
+              "requestBody":
+                {
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema": { "type": "object" },
+                          "examples":
+                            {
+                              "Count contact object Records":
+                                {
+                                  "value":
+                                    { "module": "contact", "count_only": "1" },
+                                  "summary": "Count contact object Records",
+                                },
+                              "List of All contacts with all fields":
+                                {
+                                  "value": { "module": "contact" },
+                                  "summary": "List of All contacts with all fields",
+                                },
+                              "List of contacts with specific fields passed in the fields array":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "fields":
+                                            [
+                                              "firstname",
+                                              "createddate",
+                                              "contact_type__c",
+                                              "metro_area__c",
+                                            ],
+                                          "order_by": "firstname:DESC",
+                                          "max_num": "-1",
+                                        },
+                                    },
+                                  "summary": "List of contacts with specific fields passed in the fields array",
+                                },
+                              "Filter By contact ID":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "sfid":
+                                                  {
+                                                    "$equals": "0017600000cmqHcAAI",
+                                                  },
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By contact ID",
+                                },
+                              "Filter By contact Type Equals Administrator":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "contact_type__c":
+                                                  {
+                                                    "$equals": "Administrator",
+                                                  },
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By contact Type Equals Administrator",
+                                },
+                              "Filter By contact Type Not Equals Assistant":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                  "contact_type__c":
+                                                  {
+                                                    "$not_equals": "Assistant",
+                                                  },
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By contact Type Not Equals Assistant",
+                                },
+                              "Filter By contact Name with OR Example":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "$or":
+                                                  [
+                                                    {
+                                                      "firstname":
+                                                        { "$contains": "Test" },
+                                                    },
+                                                    {
+                                                      "firstname":
+                                                        { "$equals": "Test2" },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By contact Name with OR Example",
+                                },
+                              "Filter By contact Name and Type fields AND Example":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "$and":
+                                                  [
+                                                    {
+                                                      "firstname":
+                                                        {
+                                                          "$equals": "Dakota QA 2",
+                                                        },
+                                                    },
+                                                    {
+                                                      "firstname":
+                                                        {
+                                                          "$equals": "Endowment",
+                                                        },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By contact Name and Type fields AND Example",
+                                },
+                              "Filter By Last Modified Date field between Operator":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "order_by": "firstname:DESC",
+                                          "max_num": 50,
+                                          "offset": 0,
+                                          "filter":
+                                            [
+                                              {
+                                                "lastmodifieddate":
+                                                  {
+                                                    "$between":
+                                                      [
+                                                        "2025-01-01",
+                                                        "2025-01-20",
+                                                      ],
+                                                  },
+                                              },
+                                            ],
+                                          "fields":
+                                            [
+                                              "sfid",
+                                              "firstname",
+                                              "lastmodifieddate",
+                                              "contact_type__c",
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Last Modified Date field between Operator",
+                                },
+                              "Filter By Created Date Range last_30_days":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "createddate":
+                                                  {
+                                                    "$dateRange": "last_30_days",
+                                                  },
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Created Date Range last_30_days",
+                                },
+                              "Single quotes will be escaped by adding a single qutoe twice":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "firstname":
+                                                  {
+                                                    "$equals": 'Malcolm "Mac" Mayer',
+                                                  },
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Single quotes will be escaped by adding a single qutoe twice",
+                                },
+                              "Get Contacts With Company Information":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "order_by": "createddate:dec",
+                                          "fields":
+                                            [
+                                              "sfid",
+                                              "name",
+                                              "lastname",
+                                              "mailingpostalcode",
+                                              "asset_class_coverage__c",
+                                              "mailingstate",
+                                              "recordtypeid",
+                                              "marketplace_verified_contact__c",
+                                              "contact_type__c",
+                                              "mailingcountry",
+                                              "lastmodifieddate",
+                                              "phone",
+                                              "mailingstreet",
+                                              "systemmodstamp",
+                                              "metro_area__c",
+                                              "createddate",
+                                              "mailingcity",
+                                              "title",
+                                              "firstname",
+                                              "email",
+                                              "description",
+                                              "biography__c",
+                                              "crd__c",
+                                              "linkedin_url__c",
+                                              "account_metroarea_id__c",
+                                              "channel_focus__c",
+                                              "mailinglongitude",
+                                              "mailinglatitude",
+                                              "asset_class__c",
+                                              "accountid",
+                                              "account_name__c",
+                                              "metro_area_name__c",
+                                              "account_type__c",
+                                              "account.accountid.aum__c",
+                                              "account.accountid.website",
+                                              "account.accountid.billingstate",
+                                              "account.accountid.billingcountry",
+                                              "account.accountid.metro_area_name__c",
+                                            ],
+                                          "filter":
+                                            [
+                                              {
+                                                "aum__c": { "$gt": "2000000" },
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Get Contacts With Company Information",
+                                },
+                              "Filter Contacts By Account Type":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "order_by": "createddate:dec",
+                                          "fields":
+                                            [
+                                              "sfid",
+                                              "name",
+                                              "lastname",
+                                              "mailingpostalcode",
+                                              "asset_class_coverage__c",
+                                              "mailingstate",
+                                              "recordtypeid",
+                                              "marketplace_verified_contact__c",
+                                              "contact_type__c",
+                                              "mailingcountry",
+                                              "lastmodifieddate",
+                                              "phone",
+                                              "mailingstreet",
+                                              "systemmodstamp",
+                                              "metro_area__c",
+                                              "createddate",
+                                              "mailingcity",
+                                              "title",
+                                              "firstname",
+                                              "email",
+                                              "description",
+                                              "biography__c",
+                                              "crd__c",
+                                              "linkedin_url__c",
+                                              "account_metroarea_id__c",
+                                              "channel_focus__c",
+                                              "mailinglongitude",
+                                              "mailinglatitude",
+                                              "asset_class__c",
+                                              "accountid",
+                                              "account_name__c",
+                                              "metro_area_name__c",
+                                              "account_type__c",
+                                              "account.accountid.aum__c",
+                                            ],
+                                          "filter":
+                                            [
+                                              {
+                                                "$and":
+                                                  [
+                                                    {
+                                                      "account_type__c":
+                                                        { "$equals": "Bank" },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter Contacts By Account Type",
+                                },
+                              "Filter Contacts By Account Aum - Range Example1 (Both Inclusive)":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "order_by": "createddate:dec",
+                                          "fields":
+                                            [
+                                              "sfid",
+                                              "name",
+                                              "lastname",
+                                              "mailingpostalcode",
+                                              "asset_class_coverage__c",
+                                              "mailingstate",
+                                              "recordtypeid",
+                                              "marketplace_verified_contact__c",
+                                              "contact_type__c",
+                                              "mailingcountry",
+                                              "lastmodifieddate",
+                                              "phone",
+                                              "mailingstreet",
+                                              "systemmodstamp",
+                                              "metro_area__c",
+                                              "createddate",
+                                              "mailingcity",
+                                              "title",
+                                              "firstname",
+                                              "email",
+                                              "description",
+                                              "biography__c",
+                                              "crd__c",
+                                              "linkedin_url__c",
+                                              "account_metroarea_id__c",
+                                              "channel_focus__c",
+                                              "mailinglongitude",
+                                              "mailinglatitude",
+                                              "asset_class__c",
+                                              "accountid",
+                                              "account_name__c",
+                                              "metro_area_name__c",
+                                              "account_type__c",
+                                              "account.accountid.aum__c",
+                                            ],
+                                          "filter":
+                                            [
+                                              {
+                                                "$and":
+                                                  [
+                                                    {
+                                                      "account1.aum__c":
+                                                        {
+                                                          "$gte": "9000000000",
+                                                        },
+                                                    },
+                                                    {
+                                                      "account1.aum__c":
+                                                        {
+                                                          "$lte": "10000000000",
+                                                        },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter Contacts By Account Aum - Range Example1 (Both Inclusive)",
+                                },
+                              "Filter By Account's Aum And Type  - Range Example 3 (Using Between)":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "order_by": "createddate:dec",
+                                          "fields":
+                                            [
+                                              "sfid",
+                                              "name",
+                                              "lastname",
+                                              "mailingpostalcode",
+                                              "asset_class_coverage__c",
+                                              "mailingstate",
+                                              "recordtypeid",
+                                              "marketplace_verified_contact__c",
+                                              "contact_type__c",
+                                              "mailingcountry",
+                                              "lastmodifieddate",
+                                              "phone",
+                                              "mailingstreet",
+                                              "systemmodstamp",
+                                              "metro_area__c",
+                                              "createddate",
+                                              "mailingcity",
+                                              "title",
+                                              "firstname",
+                                              "email",
+                                              "description",
+                                              "biography__c",
+                                              "crd__c",
+                                              "linkedin_url__c",
+                                              "account_metroarea_id__c",
+                                              "channel_focus__c",
+                                              "mailinglongitude",
+                                              "mailinglatitude",
+                                              "asset_class__c",
+                                              "accountid",
+                                              "account_name__c",
+                                              "metro_area_name__c",
+                                              "account_type__c",
+                                              "account.accountid.aum__c",
+                                            ],
+                                          "filter":
+                                            [
+                                              {
+                                                "account1.aum__c":
+                                                  {
+                                                    "$between":
+                                                      [
+                                                        "9000000000",
+                                                        "10000000000",
+                                                      ],
+                                                  },
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Account's Aum And Type  - Range Example 3 (Using Between)",
+                                },
+                              "Filter By Account's Aum And Type  - And Example":
+                                {
+                                  "value":
+                                    {
+                                      "module": "contact",
+                                      "filters":
+                                        {
+                                          "order_by": "createddate:dec",
+                                          "fields":
+                                            [
+                                              "sfid",
+                                              "name",
+                                              "lastname",
+                                              "mailingpostalcode",
+                                              "asset_class_coverage__c",
+                                              "mailingstate",
+                                              "recordtypeid",
+                                              "marketplace_verified_contact__c",
+                                              "contact_type__c",
+                                              "mailingcountry",
+                                              "lastmodifieddate",
+                                              "phone",
+                                              "mailingstreet",
+                                              "systemmodstamp",
+                                              "metro_area__c",
+                                              "createddate",
+                                              "mailingcity",
+                                              "title",
+                                              "firstname",
+                                              "email",
+                                              "description",
+                                              "biography__c",
+                                              "crd__c",
+                                              "linkedin_url__c",
+                                              "account_metroarea_id__c",
+                                              "channel_focus__c",
+                                              "mailinglongitude",
+                                              "mailinglatitude",
+                                              "asset_class__c",
+                                              "accountid",
+                                              "account_name__c",
+                                              "metro_area_name__c",
+                                              "account_type__c",
+                                              "account.accountid.aum__c",
+                                            ],
+                                          "filter":
+                                            [
+                                              {
+                                                "$or":
+                                                  [
+                                                    {
+                                                      "account_type__c":
+                                                        { "$equals": "Bank" },
+                                                    },
+                                                    {
+                                                      "$and":
+                                                        [
+                                                          {
+                                                            "account1.aum__c":
+                                                              {
+                                                                "$gt": "9000000000",
+                                                              },
+                                                          },
+                                                          {
+                                                            "account1.aum__c":
+                                                              {
+                                                                "$lt": "10000000000",
+                                                              },
+                                                          },
+                                                        ],
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Account's Aum And Type  - And Example",
+                                },
+                            },
+                        },
+                    },
+                },
+              "parameters":
+                [
+                  {
+                    "name": "Oauth-Token",
+                    "in": "header",
+                    "schema": { "type": "string" },
+                    "example": "{{heroku}}",
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "Successful response",
+                      "content": { "application/json": {} },
+                    },
+                  "401":
+                    { "description": "Unauthorized to access the records" },
+                  "403":
+                    { "description": "You don't have access to this module" },
+                  "404": { "description": "Could Not Find the Resource" },
+                },
+            },
+        },
+    },
+}

@@ -1,0 +1,4 @@
+.api-reference-badge,
+[data-testid="api-reference"] {
+  display: none !important;
+}

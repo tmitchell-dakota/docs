@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Dakota",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -11,38 +11,12 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Get started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "index"
             ]
           }
         ]
@@ -51,58 +25,109 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Authentication API",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/endpoint/auth"
             ]
           },
           {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
+            "group": "Accounts API",
+            "openapi": {
+              "source": "api-reference/accounts.yaml"
+            }
+          },
+          {
+            "group": "Contacts API",
+            "openapi": {
+              "source": "api-reference/contacts.yaml"
+            }
+          },
+          {
+            "group": "Conference API",
+            "openapi": {
+              "source": "api-reference/conference__c.yaml"
+            }
+          },
+          {
+            "group": "Custom Account Contact Relation API",
+            "openapi": {
+              "source": "api-reference/custom_accountcontactrelation.yaml"
+            }
+          },
+          {
+            "group": "Dakota Content API",
+            "openapi": {
+              "source": "api-reference/dakota_content__c.yaml"
+            }
+          },
+          {
+            "group": "Dakota News API",
+            "openapi": {
+              "source": "api-reference/dakota_news__c.yaml"
+            }
+          },
+          {
+            "group": "Investment API",
+            "openapi": {
+              "source": "api-reference/investment__c.yaml"
+            }
+          },
+          {
+            "group": "Investment Strategy API",
+            "openapi": {
+              "source": "api-reference/investment_strategy__c.yaml"
+            }
+          },
+          {
+            "group": "Manager Presentation API",
+            "openapi": {
+              "source": "api-reference/manager_presentation__c.yaml"
+            }
+          },
+          {
+            "group": "Marketplace Searches API",
+            "openapi": {
+              "source": "api-reference/marketplace_searches__c.yaml"
+            }
+          },
+          {
+            "group": "Member Comments API",
+            "openapi": {
+              "source": "api-reference/member_comments__c.yaml"
+            }
+          },
+          {
+            "group": "Metro Area API",
+            "openapi": {
+              "source": "api-reference/MetroArea.yaml"
+            }
+          },
+          {
+            "group": "Public Plan Minute API",
+            "openapi": {
+              "source": "api-reference/public_plan_minute__c.yaml"
+            }
+          },
+          {
+            "group": "Updates API",
+            "openapi": {
+              "source": "api-reference/updates.yaml"
+            }
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+
+    ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/dakota-light.png",
+    "dark": "/dakota.png"
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Dakota Site",
+      "href": "https://www.dakota.com/"
     }
   },
   "contextual": {
@@ -119,9 +144,9 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://twitter.com/DakotaInsights",
+      "youtube": "https://www.youtube.com/channel/UCV1Nsrn6lRNKNZxUqEwKpsw/featured",
+      "linkedin": "https://www.linkedin.com/company/dakota-about/about/"
     }
   }
 }

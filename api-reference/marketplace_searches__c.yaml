@@ -1,0 +1,265 @@
+{
+  "openapi": "3.0.0",
+  "info": { "title": "Dakota API's", "version": "1.0.0" },
+  "servers": [{ "url": "https://marketplace-as-a-service.herokuapp.com/" }],
+  "paths":
+    {
+      "/index.php/api/dakota":
+        {
+          "post":
+            {
+              "tags": ["Marketplace Searches"],
+              "summary": "Marketplace Searches API",
+              "description": "This API allows listing all Searches object records with options to filter, sort, and paginate the results.",
+              "requestBody":
+                {
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema": { "type": "object" },
+                          "examples":
+                            {
+                              "Count Searches object Records":
+                                {
+                                  "value":
+                                    {
+                                      "module": "marketplace_searches__c",
+                                      "count_only": "1",
+                                    },
+                                  "summary": "Count Searches object Records",
+                                },
+                              "List of Searches":
+                                {
+                                  "value":
+                                    {
+                                      "module": "marketplace_searches__c",
+                                      "filters":
+                                        {
+                                          "fields":
+                                            [
+                                              "name",
+                                              "createddate",
+                                              "country__c",
+                                            ],
+                                          "order_by": "name:DESC",
+                                          "max_num": "-1",
+                                        },
+                                    },
+                                  "summary": "List of Searches",
+                                },
+                              "Filter By Searches Name":
+                                {
+                                  "value":
+                                    {
+                                      "module": "marketplace_searches__c",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "$or":
+                                                  [
+                                                    {
+                                                      "country__c":
+                                                        {
+                                                          "$equals": "Afghanistan",
+                                                        },
+                                                    },
+                                                    {
+                                                      "country__c":
+                                                        {
+                                                          "$equals": "Aland Islands",
+                                                        },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Searches Name",
+                                },
+                              "Filter By Created Date":
+                                {
+                                  "value":
+                                    {
+                                      "module": "marketplace_searches__c",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "createddate":
+                                                  {
+                                                    "$dateRange": "last_30_days",
+                                                  },
+                                              },
+                                            ],
+                                          "max_num": "-1",
+                                        },
+                                    },
+                                  "summary": "Filter By Created Date",
+                                },
+                              "Filter By Source OR & AND with Equals":
+                                {
+                                  "value":
+                                    {
+                                      "module": "marketplace_searches__c",
+
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "$or":
+                                                  [
+                                                    {
+                                                      "Source__c":
+                                                        {
+                                                          "$equals": "Dakota Investments",
+                                                        },
+                                                    },
+                                                    {
+                                                      "Source__c":
+                                                        {
+                                                          "$equals": "Pension Brief",
+                                                        },
+                                                    },
+                                                    {
+                                                      "Source__c":
+                                                        {
+                                                          "$equals": "Public-Online",
+                                                        },
+                                                    },
+                                                  ],
+                                                "$and":
+                                                  [
+                                                    {
+                                                      "name":
+                                                        {
+                                                          "$contains": "Investments",
+                                                        },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Source OR & AND with Equals",
+                                },
+                              "example6":
+                                {
+                                  "value":
+                                    {
+                                      "module": "marketplace_searches__c",
+
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "$or":
+                                                  [
+                                                    {
+                                                      "Source__c":
+                                                        {
+                                                          "$equals": "Dakota Investments",
+                                                        },
+                                                    },
+                                                    {
+                                                      "Source__c":
+                                                        {
+                                                          "$equals": "Pension Brief",
+                                                        },
+                                                    },
+                                                    {
+                                                      "Source__c":
+                                                        {
+                                                          "$equals": "Public-Online",
+                                                        },
+                                                    },
+                                                  ],
+                                                "$and":
+                                                  [
+                                                    {
+                                                      "name":
+                                                        {
+                                                          "$contains": "Investments",
+                                                        },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Status OR & AND with Equals",
+                                },
+                              "Filter By AssetClass OR & AND with Equals":
+                                {
+                                  "value":
+                                    {
+                                      "module": "marketplace_searches__c",
+
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "$and":
+                                                  [
+                                                    {
+                                                      "Asset_Class__c":
+                                                        {
+                                                          "$equals": "US Equities",
+                                                        },
+                                                    },
+                                                  ],
+                                                "$or":
+                                                  [
+                                                    {
+                                                      "Search_Status__c":
+                                                        {
+                                                          "$equals": "Upcoming",
+                                                        },
+                                                    },
+                                                    {
+                                                      "Search_Status__c":
+                                                        { "$equals": "Open" },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By AssetClass OR & AND with Equals",
+                                },
+                            },
+                        },
+                    },
+                },
+              "parameters":
+                [
+                  {
+                    "name": "Oauth-Token",
+                    "in": "header",
+                    "schema": { "type": "string" },
+                    "example": "{{heroku}}",
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "Successful response",
+                      "content": { "application/json": {} },
+                    },
+                  "401":
+                    { "description": "Unauthorized to access the records" },
+                  "403":
+                    { "description": "You don't have access to this module" },
+                  "404": { "description": "Could Not Find the Resource" },
+                },
+            },
+        },
+    },
+}

@@ -1,0 +1,184 @@
+openapi: 3.0.0
+info:
+  title: Dakota API's
+  version: 1.0.0
+
+servers:
+  - url: https://marketplace-as-a-service.herokuapp.com/
+
+paths:
+  /index.php/api/dakota:
+    post:
+      tags:
+        - Accounts
+      summary: Account Management API
+      description: This API allows listing all account object records with options to filter, sort, and paginate the results.
+      parameters:
+        - name: Oauth-Token
+          in: header
+          schema:
+            type: string
+          example: "{{access_token}}"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              "Count Account object Records":
+                summary: Count Account object Records
+                value:
+                  module: account
+                  count_only: "1"
+              "List of All Accounts with all fields":
+                summary: List of All Accounts with all fields
+                value:
+                  module: account
+              "List of Accounts with specific fields passed in the fields array":
+                summary: List of Accounts with specific fields passed in the fields array
+                value:
+                  module: account
+                  filters:
+                    fields: [name, createddate, aum__c, website]
+                    order_by: name:DESC
+                    max_num: "-1"
+              "Filter By Account ID":
+                summary: Filter By Account ID
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - sfid:
+                          $equals: "0017600000cmqHcAAI"
+              "Filter By Account Type Equals Bank":
+                summary: Filter By Account Type Equals Bank
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - type:
+                          $equals: Bank
+              "Filter By Account Type Not Equals Consultant":
+                summary: Filter By Account Type Not Equals Consultant
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - type:
+                          $not_equals: Consultant
+              "Filter By Account Name with OR Example":
+                summary: Filter By Account Name with OR Example
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - $or:
+                          - name:
+                              $contains: Test
+                          - name:
+                              $equals: Test2
+              "Filter By Account Name and Type fields AND Example":
+                summary: Filter By Account Name and Type fields AND Example
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - $and:
+                          - name:
+                              $equals: Dakota QA 2
+                          - type:
+                              $equals: Endowment
+              "Filter By AUM field between Operator":
+                summary: Filter By AUM field between Operator
+                value:
+                  module: account
+                  filters:
+                    order_by: name:DESC
+                    max_num: 50
+                    offset: 0
+                    filter:
+                      - aum__c:
+                          $between: [100, 500000]
+                    fields: [sfid, name, lastmodifieddate, aum__c]
+              "Filter By Last Modified Date field between Operator":
+                summary: Filter By Last Modified Date field between Operator
+                value:
+                  module: account
+                  filters:
+                    order_by: name:DESC
+                    max_num: 50
+                    offset: 0
+                    filter:
+                      - lastmodifieddate:
+                          $between: ["2025-01-01", "2025-01-20"]
+                    fields: [sfid, name, lastmodifieddate, aum__c]
+              "Filter By AUM field greater than":
+                summary: Filter By AUM field greater than
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - aum__c:
+                          $gt: "1200000"
+              "Filter By AUM field greater than equal to":
+                summary: Filter By AUM field greater than equal to
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - aum__c:
+                          $gte: "1000000"
+              "Filter By AUM field less than":
+                summary: Filter By AUM field less than
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - aum__c:
+                          $lt: "1000000"
+              "Filter By AUM field less than equal to":
+                summary: Filter By AUM field less than equal to
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - aum__c:
+                          $lte: "1000000"
+              "Filter By Created Date Range last_30_days":
+                summary: Filter By Created Date Range last_30_days
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - createddate:
+                          $dateRange: last_30_days
+              "Single quotes will be escaped by adding a single quote twice":
+                summary: Single quotes will be escaped by adding a single quote twice
+                value:
+                  module: account
+                  filters:
+                    filter:
+                      - name:
+                          $equals: "Malcolm \"Mac\" Mayer"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+        '401':
+          description: Unauthorized to access the records
+        '403':
+          description: You don't have access to this module
+        '404':
+          description: Could Not Find the Resource
+
+components:
+  schemas:
+    GenericResponse:
+      type: object
+      description: Generic successful response wrapper
+      additionalProperties: true
+

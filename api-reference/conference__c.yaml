@@ -1,0 +1,212 @@
+{
+  "openapi": "3.0.0",
+  "info": { "title": "Dakota API's", "version": "1.0.0" },
+  "servers": [{ "url": "https://marketplace-as-a-service.herokuapp.com/" }],
+  "paths":
+    {
+            "/index.php/api/dakota":
+        {
+          "post":
+            {
+              "tags": ["Conferences"],
+              "summary": "Conference Management API",
+              "description": "This API allows listing all Conference object records with options to filter, sort, and paginate the results.",
+              "requestBody":
+                {
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema": { "type": "object" },
+                          "examples":
+                            {
+                              "Count Conference object Records":
+                                {
+                                  "value":
+                                    {
+                                      "module": "conference__c",
+                                      "count_only": "1",
+                                    },
+                                  "summary": "Count Conference object Records",
+                                },
+                              "List of Conferences":
+                                {
+                                  "value":
+                                    {
+                                      "module": "conference__c",
+                                      "filters":
+                                        {
+                                          "fields":
+                                            [
+                                              "name",
+                                              "createddate",
+                                              "format__c",
+                                            ],
+                                          "order_by": "name:DESC",
+                                          "max_num": "-1",
+                                        },
+                                    },
+                                  "summary": "List of Conferences",
+                                },
+                              "Filter By Conference Name":
+                                {
+                                  "value":
+                                    {
+                                      "module": "conference__c",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "$and":
+                                                  [
+                                                    {
+                                                      "name":
+                                                        { "$contains": "RT" },
+                                                    },
+                                                    {
+                                                      "name":
+                                                        { "$contains": "Conf" },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Conference Name",
+                                },
+                              "Filter By Category":
+                                {
+                                  "value":
+                                    {
+                                      "module": "conference__c",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "$and":
+                                                  [
+                                                    {
+                                                      "category__c":
+                                                        {
+                                                          "$equals": "brokers",
+                                                        },
+                                                    },
+                                                    {
+                                                      "format__c":
+                                                        {
+                                                          "$equals": "Virtual",
+                                                        },
+                                                    },
+                                                    {
+                                                      "speaker_type__c":
+                                                        {
+                                                          "$equals": "Allocators",
+                                                        },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                          "fields":
+                                            [
+                                              "name",
+                                              "format__c",
+                                              "category__c",
+                                              "end_date__c",
+                                              "website__c",
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Category",
+                                },
+                              "Filter By Conference Organizer":
+                                {
+                                  "value":
+                                    {
+                                      "module": "conference__c",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "$or":
+                                                  [
+                                                    {
+                                                      "Conference_Organizer__c":
+                                                        {
+                                                          "$equals": "0017600000M9O7EAAV",
+                                                        },
+                                                    },
+                                                    {
+                                                      "Conference_Organizer__c":
+                                                        {
+                                                          "$equals": "0017600000GOCKVAA5",
+                                                        },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Conference Organizer",
+                                },
+                              "Filter By Continuing Education Credits":
+                                {
+                                  "value":
+                                    {
+                                      "module": "conference__c",
+                                      "filters":
+                                        {
+                                          "filter":
+                                            [
+                                              {
+                                                "$and":
+                                                  [
+                                                    {
+                                                      ? "continuing_education_credits_available__c"
+                                                      : { "$equals": "true" },
+                                                    },
+                                                    {
+                                                      "Conference_Organizer__c":
+                                                        {
+                                                          "$equals": "0017600000GOCKVAA5",
+                                                        },
+                                                    },
+                                                  ],
+                                              },
+                                            ],
+                                        },
+                                    },
+                                  "summary": "Filter By Continuing Education Credits",
+                                },
+                            },
+                        },
+                    },
+                },
+              "parameters":
+                [
+                  {
+                    "name": "Oauth-Token",
+                    "in": "header",
+                    "schema": { "type": "string" },
+                    "example": "{{heroku}}",
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "Successful response",
+                      "content": { "application/json": {} },
+                    },
+                  "401":
+                    { "description": "Unauthorized to access the records" },
+                  "403":
+                    { "description": "You don't have access to this module" },
+                  "404": { "description": "Could Not Find the Resource" },
+                },
+            },
+        },
+    },
+}

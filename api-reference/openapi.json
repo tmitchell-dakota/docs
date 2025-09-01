@@ -10,63 +10,19 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
+      "url": "https://marketplace-as-a-service.herokuapp.com"
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/index.php/api/oauth2": {
       "post": {
-        "description": "Creates a new plant in the store",
+        "description": "Authenticate the user with the system and obtain the access_token. Request and Response Content-Type would be JSON.",
         "requestBody": {
-          "description": "Plant to add to the store",
+          "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/Auth"
               }
             }
           },
@@ -74,79 +30,54 @@
         },
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "The access token to authenticate requests."
+                    },
+                    "expires_in": {
+                      "type": "integer",
+                      "description": "Time in seconds until the access token expires."
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "The type of the token (usually 'bearer')."
+                    },
+                    "refresh_token": {
+                      "type": "string",
+                      "description": "The refresh token used to obtain a new access token."
+                    },
+                    "refresh_expires_in": {
+                      "type": "integer",
+                      "description": "Time in seconds until the refresh token expires."
+                    },
+                    "fuse_client_id_seq": {
+                      "type": ["string", "null"],
+                      "description": "Client ID sequence, can be null."
+                    }
+                  },
+                  "example": {
+                    "access_token": "93019854-6B88-4997-9179-C1C50E7D2E9D",
+                    "expires_in": 3600,
+                    "token_type": "bearer",
+                    "refresh_token": "2495C12E-AFFA-40AD-8B91-61D7CEE3D5DC",
+                    "refresh_expires_in": 18000,
+                    "fuse_client_id_seq": null
+                  }
                 }
               }
             }
           },
           "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
+            "description": "Please provide correct username and password"
           },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
-        "requestBody": {
-          "description": "Plant added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
+          "404": {
+            "description": "Could Not Find Resource"
           }
         }
       }
@@ -154,54 +85,24 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
+      "Auth": {
         "required": [
-          "name"
+          "username",
+          "password",
+          "grant_type"
         ],
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
+          "username": {
+            "description": "",
             "type": "string"
           },
-          "tag": {
-            "description": "Tag to specify the type",
+          "password": {
+            "description": "",
             "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
           },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
+          "grant_type": {
+            "description": "It is used by confidential and public clients to exchange an authorization code for an access token. It would be 'password'.",
             "type": "string"
           }
         }

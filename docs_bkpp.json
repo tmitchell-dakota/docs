@@ -1,0 +1,80 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Dakota",
+  "colors": {
+    "primary": "#16A34A",
+    "light": "#07C983",
+    "dark": "#15803D"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": [
+              "index"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API reference",
+        "groups": [
+          {
+            "group": "Authentication API",
+            "pages": [
+              "api-reference/endpoint/auth"
+            ]
+          },
+          {
+            "group": "Accounts API",
+            "openapi": {
+              "source": "api-reference/accounts.yaml"
+            }
+          },
+          {
+            "group": "Contacts API",
+            "openapi": {
+              "source": "api-reference/contacts.yaml"
+            }
+          }
+        ]
+      }
+
+    ]
+  },
+  "logo": {
+    "light": "/dakota.png",
+    "dark": "/dakota.png"
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Dakota Site",
+      "href": "https://www.dakota.com/"
+    }
+  },
+  "contextual": {
+    "options": [
+     "copy",
+     "view",
+     "chatgpt",
+     "claude",
+     "perplexity",
+     "mcp",
+     "cursor",
+     "vscode"
+   ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://twitter.com/DakotaInsights",
+      "youtube": "https://www.youtube.com/channel/UCV1Nsrn6lRNKNZxUqEwKpsw/featured",
+      "linkedin": "https://www.linkedin.com/company/dakota-about/about/"
+    }
+  }
+}

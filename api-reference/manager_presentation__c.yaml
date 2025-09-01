@@ -1,0 +1,121 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Dakota API's",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://marketplace-as-a-service.herokuapp.com/"
+    }
+  ],
+  "paths": {
+    "/index.php/api/dakota": {
+      "post": {
+        "tags": ["Manager Presentations"],
+        "summary": "Manager Presentations API",
+        "description": "This API allows listing all Manager Presentations object records with options to filter, sort, and paginate the results.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "examples": {
+                "Count Manager Presentations object Records": {
+                  "value": {
+                    "module": "manager_presentation__c",
+                    "count_only": "1"
+                  },
+                  "summary": "Count Manager Presentations object Records"
+                },
+                "List of Manager Presentations": {
+                  "value": {
+                      "module": "manager_presentation__c",
+                      "filters": {
+                          "fields": [
+                              "name",
+                              "createddate",
+                              "country__c"
+                          ],
+                          "order_by": "name:DESC",
+                          "max_num": "-1"
+                      }
+                  },
+                  "summary": "List of Manager Presentations"
+                },
+                "Filter By Manager Presentations Name": {
+                  "value": {
+                    "module": "manager_presentation__c",
+                    "filters": {
+                        "filter": [
+                            {
+                                "$or": [
+                                    {
+                                        "country__c": {
+                                            "$equals": "Afghanistan"
+                                        }
+                                    },
+                                    {
+                                        "country__c": {
+                                            "$equals": "Aland Islands"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                  },
+                  "summary": "Filter By Manager Presentations Name"
+                },
+                "Filter By CreatedDate": {
+                  "value": {
+                    "module": "manager_presentation__c",
+                    "filters": {
+                        "filter": [
+                            {
+                                "createddate": {
+                                    "$dateRange": "last_30_days"
+                                }
+                            }
+                        ],
+                        "max_num": "-1"
+                    }
+                  },
+                  "summary": "Filter By CreatedDate"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Oauth-Token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{heroku}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized to access the records"
+          },
+          "403": {
+            "description": "You don't have access to this module"
+          },
+          "404": {
+            "description": "Could Not Find the Resource"
+          }
+        }
+      }
+    }
+  }
+}
