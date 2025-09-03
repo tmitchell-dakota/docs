@@ -1,0 +1,86 @@
+---
+title: 'Public Plan Minutes API'
+openapi: 'POST /index.php/api/dakota'
+---
+
+## How to Use
+
+1. **Copy** any of the JSON examples below.
+2. **Go to the API playground** by clicking on the **"Try it"** button.
+3. **Paste** the JSON into the request body field.
+4. **Click "Send"** button to execute the request.
+
+## Examples
+
+### Count Public Plan Minutes Records
+```json
+{
+  "module": "public_plan_minute__c",
+  "count_only": "1"
+}
+```
+
+### List All Public Plan Minutes
+```json
+{
+  "module": "public_plan_minute__c",
+  "filters": {
+    "fields": ["name", "createddate", "country__c"],
+    "order_by": "name:DESC",
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Public Plan Minutes Name
+```json
+{
+  "module": "public_plan_minute__c",
+  "filters": {
+    "filter": [
+      {
+        "$and": [
+          {
+            "name": {
+              "$contains": "Adams"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Filter By CreatedDate
+```json
+{
+  "module": "public_plan_minute__c",
+  "filters": {
+    "filter": [
+      {
+        "createddate": {
+          "$dateRange": "last_30_days"
+        }
+      }
+    ],
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Account Equals
+```json
+{
+  "module": "public_plan_minute__c",
+  "filters": {
+    "filter": [
+      {
+        "account__c": {
+          "$equals": "0017600000TLTRkAAP"
+        }
+      }
+    ]
+  }
+}
+``` 

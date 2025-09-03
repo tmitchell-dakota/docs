@@ -1,0 +1,158 @@
+---
+title: 'Contacts API'
+openapi: 'POST /index.php/api/dakota'
+---
+
+## How to Use
+
+1. **Copy** any of the JSON examples below.
+2. **Go to the API playground** by clicking on the **"Try it"** button.
+3. **Paste** the JSON into the request body field.
+4. **Click "Send"** button to execute the request.
+
+## Examples
+
+### Count Contact Records
+```json
+{
+  "module": "contact",
+  "count_only": "1"
+}
+```
+
+### List All Contacts
+```json
+{
+  "module": "contact"
+}
+```
+
+### List Contacts with Specific Fields
+```json
+{
+  "module": "contact",
+  "filters": {
+    "fields": ["firstname", "createddate", "contact_type__c", "metro_area__c"],
+    "order_by": "firstname:DESC",
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Contact ID
+```json
+{
+  "module": "contact",
+  "filters": {
+    "filter": [
+      {
+        "sfid": {
+          "$equals": "0017600000cmqHcAAI"
+        }
+      }
+    ]
+  }
+}
+```
+
+### Filter By Contact Type (Administrator)
+```json
+{
+  "module": "contact",
+  "filters": {
+    "filter": [
+      {
+        "contact_type__c": {
+          "$equals": "Administrator"
+        }
+      }
+    ]
+  }
+}
+```
+
+### Filter By Contact Type (Not Assistant)
+```json
+{
+  "module": "contact",
+  "filters": {
+    "filter": [
+      {
+        "contact_type__c": {
+          "$not_equals": "Assistant"
+        }
+      }
+    ]
+  }
+}
+```
+
+### Filter By Contact Name (OR Example)
+```json
+{
+  "module": "contact",
+  "filters": {
+    "filter": [
+      {
+        "$or": [
+          {
+            "firstname": {
+              "$contains": "Test"
+            }
+          },
+          {
+            "firstname": {
+              "$equals": "Test2"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Filter By Contact Name and Type (AND Example)
+```json
+{
+  "module": "contact",
+  "filters": {
+    "filter": [
+      {
+        "$and": [
+          {
+            "firstname": {
+              "$equals": "Dakota QA 2"
+            }
+          },
+          {
+            "firstname": {
+              "$equals": "Endowment"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Filter By Last Modified Date Range
+```json
+{
+  "module": "contact",
+  "filters": {
+    "order_by": "firstname:DESC",
+    "max_num": 50,
+    "offset": 0,
+    "filter": [
+      {
+        "lastmodifieddate": {
+          "$between": ["2025-01-01", "2025-01-20"]
+        }
+      }
+    ],
+    "fields": ["sfid", "firstname", "lastmodifieddate", "contact_type__c"]
+  }
+}
+``` 

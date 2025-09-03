@@ -1,0 +1,86 @@
+---
+title: 'Custom Account Contact Relation API'
+openapi: 'POST /index.php/api/dakota'
+---
+
+## How to Use
+
+1. **Copy** any of the JSON examples below.
+2. **Go to the API playground** by clicking on the **"Try it"** button.
+3. **Paste** the JSON into the request body field.
+4. **Click "Send"** button to execute the request.
+
+## Examples
+
+### Count Custom Account Contact Relation Records
+```json
+{
+  "module": "custom_accountcontactrelation",
+  "count_only": "1"
+}
+```
+
+### List All Custom Account Contact Relations
+```json
+{
+  "module": "custom_accountcontactrelation",
+  "filters": {
+    "fields": ["name", "createddate", "country__c"],
+    "order_by": "name:DESC",
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Custom Account Contact Relation Name
+```json
+{
+  "module": "custom_accountcontactrelation",
+  "filters": {
+    "filter": [
+      {
+        "$and": [
+          {
+            "name": {
+              "$contains": "Adams"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Filter By CreatedDate
+```json
+{
+  "module": "custom_accountcontactrelation",
+  "filters": {
+    "filter": [
+      {
+        "createddate": {
+          "$dateRange": "last_30_days"
+        }
+      }
+    ],
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Account Equals
+```json
+{
+  "module": "custom_accountcontactrelation",
+  "filters": {
+    "filter": [
+      {
+        "account__c": {
+          "$equals": "0017600000TLTRkAAP"
+        }
+      }
+    ]
+  }
+}
+``` 

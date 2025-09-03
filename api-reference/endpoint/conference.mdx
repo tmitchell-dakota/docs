@@ -1,0 +1,89 @@
+---
+title: 'Conference API'
+openapi: 'POST /index.php/api/dakota'
+---
+
+## How to Use
+
+1. **Copy** any of the JSON examples below.
+2. **Go to the API playground** by clicking on the **"Try it"** button.
+3. **Paste** the JSON into the request body field.
+4. **Click "Send"** button to execute the request.
+
+## Examples
+
+### Count Conference Records
+```json
+{
+  "module": "conference__c",
+  "count_only": "1"
+}
+```
+
+### List All Conferences
+```json
+{
+  "module": "conference__c"
+}
+```
+
+### List Conferences with Specific Fields
+```json
+{
+  "module": "conference__c",
+  "filters": {
+    "fields": ["name", "createddate", "format__c"],
+    "order_by": "name:DESC",
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Conference Name (AND Example)
+```json
+{
+  "module": "conference__c",
+  "filters": {
+    "filter": [
+      {
+        "$and": [
+          {
+            "name": {
+              "$contains": "RT"
+            }
+          },
+          {
+            "name": {
+              "$contains": "Conf"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Filter By Category and Format
+```json
+{
+  "module": "conference__c",
+  "filters": {
+    "filter": [
+      {
+        "$and": [
+          {
+            "category__c": {
+              "$equals": "brokers"
+            }
+          },
+          {
+            "format__c": {
+              "$equals": "Virtual"
+            }
+          }
+        ]
+      }
+    ]
+  }
+} 

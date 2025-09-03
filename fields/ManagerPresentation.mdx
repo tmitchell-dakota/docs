@@ -1,0 +1,40 @@
+---
+title: "Manager Presentation"
+description: "This page contains all the available fields for the Manager Presentation object in the Dakota system."
+---
+
+## Field Reference Table
+
+| Field Name | Label | Type | Length |
+|:-----------|:------|:-----|:-------|
+| `account_name__c` | Account Name | string | 1300 |
+| `account__c` | Account | reference to: Account | 18 |
+| `asset_class__c` | Asset Class | picklist | 255 |
+| `base_fee__c` | Base Fee | percent | 0 |
+| `consultant__c` | Consultant | reference to: Account | 18 |
+| `createdbyid` | Created By ID | reference to: User | 18 |
+| `createddate` | Created Date | datetime | 0 |
+| `description__c` | Description | textarea | 32768 |
+| `id` | Record ID | id | 18 |
+| `incentive_fee__c` | Incentive Fee | percent | 0 |
+| `investment_strategy__c` | Investment Strategy | reference to: Investment_Strategy__c | 18 |
+| `isdeleted` | Deleted | boolean | 0 |
+| `is_active__c` | Marketplace Verified | boolean | 0 |
+| `lastmodifiedbyid` | Last Modified By ID | reference to: User | 18 |
+| `lastmodifieddate` | Last Modified Date | datetime | 0 |
+| `lastreferenceddate` | Last Referenced Date | datetime | 0 |
+| `lastvieweddate` | Last Viewed Date | datetime | 0 |
+| `manager_presentation_type__c` | Type | picklist | 255 |
+| `meeting_date__c` | Meeting Date | date | 0 |
+| `name` | Document Name | string | 80 |
+| `ownerid` | Owner ID | reference to: Group | 18 |
+| `posted_date__c` | Posted Date | date | 0 |
+| `public_pension_fund__c` | Public Pension Fund | reference to: Account | 18 |
+| `public_plan_minute__c` | Public Plan Minute | reference to: Public_Plan_Minute__c | 18 |
+| `recordtypeid` | Record Type ID | reference to: RecordType | 18 |
+| `record_type_name__c` | Record Type Name | string | 1300 |
+| `reported_fee__c` | Reported Fee | percent | 0 |
+| `sub_asset_class__c` | Sub-Asset Class | picklist | 255 |
+| `systemmodstamp` | System Modstamp | datetime | 0 |
+| `total_fee__c` | Total Fee | textarea | 255 |
+| `type__c` | Type For Attachment | picklist | 255 | 

@@ -1,4 +1,4 @@
-.api-reference-badge,
-[data-testid="api-reference"] {
-  display: none !important;
+textarea.text-playground-input {
+  min-height: 45dvh !important;  /* default bigger height */
+  line-height: 1.5;              /* make text spacing nicer */
 }

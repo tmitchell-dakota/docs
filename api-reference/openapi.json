@@ -18,11 +18,16 @@
       "post": {
         "description": "Authenticate the user with the system and obtain the access_token. Request and Response Content-Type would be JSON.",
         "requestBody": {
-          "description": "",
+          "description": "Provide username, password, and grant_type (password).",
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Auth"
+              },
+              "example": {
+                "username": "demo_user",
+                "password": "demo_pass",
+                "grant_type": "password"
               }
             }
           },
@@ -38,15 +43,12 @@
                   "properties": {
                     "access_token": {
                       "type": "string",
+                      "x-mintlify-variable": "ACCESS_TOKEN",
                       "description": "The access token to authenticate requests."
                     },
                     "expires_in": {
                       "type": "integer",
                       "description": "Time in seconds until the access token expires."
-                    },
-                    "token_type": {
-                      "type": "string",
-                      "description": "The type of the token (usually 'bearer')."
                     },
                     "refresh_token": {
                       "type": "string",
@@ -57,14 +59,16 @@
                       "description": "Time in seconds until the refresh token expires."
                     },
                     "fuse_client_id_seq": {
-                      "type": ["string", "null"],
+                      "type": [
+                        "string",
+                        "null"
+                      ],
                       "description": "Client ID sequence, can be null."
                     }
                   },
                   "example": {
                     "access_token": "93019854-6B88-4997-9179-C1C50E7D2E9D",
                     "expires_in": 3600,
-                    "token_type": "bearer",
                     "refresh_token": "2495C12E-AFFA-40AD-8B91-61D7CEE3D5DC",
                     "refresh_expires_in": 18000,
                     "fuse_client_id_seq": null
@@ -81,6 +85,28 @@
           }
         }
       }
+    },
+    "/index.php/api/dakota": {
+      "post": {
+        "description": "This endpoint requires an Oauth-Token obtained from /oauth2",
+        "security": [
+          {
+            "authToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "description": "Copy any of the JSON examples and paste it into the request body field."
+              },
+              "example": "<JSON example>"
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -94,24 +120,27 @@
         "type": "object",
         "properties": {
           "username": {
-            "description": "",
+            "description": "Your system username",
             "type": "string"
           },
           "password": {
-            "description": "",
+            "description": "Your system password",
             "type": "string"
           },
           "grant_type": {
             "description": "It is used by confidential and public clients to exchange an authorization code for an access token. It would be 'password'.",
-            "type": "string"
+            "type": "string",
+            "example": "password"
           }
         }
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      "authToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Oauth-Token",
+        "description": "Get the OAuth token by calling the /oauth2 authentication API. Use the access_token from the response to authorize your API requests."
       }
     }
   }

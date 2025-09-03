@@ -1,0 +1,95 @@
+---
+title: 'Dakota Content API'
+openapi: 'POST /index.php/api/dakota'
+---
+
+## How to Use
+
+1. **Copy** any of the JSON examples below.
+2. **Go to the API playground** by clicking on the **"Try it"** button.
+3. **Paste** the JSON into the request body field.
+4. **Click "Send"** button to execute the request.
+
+## Examples
+
+### Count Dakota Content Records
+```json
+{
+  "module": "dakota_content__c",
+  "count_only": "1"
+}
+```
+
+### List All Dakota Content
+```json
+{
+  "module": "dakota_content__c",
+  "filters": {
+    "fields": ["name", "createddate"],
+    "order_by": "name:DESC",
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Dakota Content Name
+```json
+{
+  "module": "dakota_content__c",
+  "filters": {
+    "filter": [
+      {
+        "$and": [
+          {
+            "name": {
+              "$contains": "RT"
+            }
+          },
+          {
+            "name": {
+              "$contains": "Test"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Filter By Type Equals
+```json
+{
+  "module": "dakota_content__c",
+  "filters": {
+    "filter": [
+      {
+        "$and": [
+          {
+            "type__c": {
+              "$equals": "Key Account"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Filter By CreatedDate
+```json
+{
+  "module": "dakota_content__c",
+  "filters": {
+    "filter": [
+      {
+        "createddate": {
+          "$dateRange": "last_30_days"
+        }
+      }
+    ],
+    "max_num": "-1"
+  }
+}
+``` 

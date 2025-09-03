@@ -1,13 +1,53 @@
 ---
-title: "Introduction"
-description: "The Marketplace API is based on the REST API architecture, which provides a standardized way to access Marketplace data without relying on a user interface. With API access, you can perform CRUD (Create, Read, Update, Delete) operations and seamlessly integrate Marketplace data with other applications to meet business requirements."
+title: "Marketplace API Documentation"
 ---
+
+## API Reference & Purpose
+
+The Marketplace API is based on the REST API architecture, which provides a standardized and simple way to access Marketplace data without relying on a user interface. Using this API, you can perform CRUD (Create, Read, Update, Delete) operations and integrate Marketplace data with other applications to meet business needs.
+
+The REST API works by sending HTTP calls to specific endpoints. Each call interacts with a resource such as a record, collection of records, query result, metadata, or API-related information.
+
+Compared to SOAP APIs, the REST API is simpler, requires less tooling, and still provides a wide range of functionality.
 
 ## HTTP Requests
 
-HTTP requests can be sent using a variety of software, and the exact structure of a request may vary. A request typically consists of the following four parts:
+A request typically consists of four parts:
 
-1. **HTTP Method**
-2. **Headers**
-3. **Request Body** (not required for GET requests)
-4. **Response** (indicating the outcome, such as success).
+1. **HTTP Method** – Defines the type of operation (e.g., POST, GET)
+2. **Headers** – Provide request details such as authorization and format
+3. **Request Body** – Contains data (not required for GET requests)
+4. **Response** – The server's reply, indicating success or failure
+
+## Base URL
+
+All API calls use the following Base URL:
+
+```
+https://marketplace-as-a-service.herokuapp.com/index.php/
+```
+
+**Example:** `POST https://marketplace-as-a-service.herokuapp.com/index.php/`
+
+## Headers
+
+The Marketplace REST API supports standard and custom headers. Commonly used headers include:
+
+- **Content-Type** – Defines the request body format (e.g., `application/json`, `application/xml`)
+- **Accept** – Defines the expected response format. Default: `application/json`
+- **Authorization** – Provides the OAuth 2.0 access token for client authorization
+- **Compression** – Compresses the request
+- **Conditional Request** – Validates requests against preconditions
+
+## Request Body
+
+The request body allows you to add new records or update existing fields.
+
+- **Format:** JSON or XML
+
+## HTTP Status Codes
+
+- **200 OK** – The request was successful
+- **400 Bad Request** – Malformed syntax; request could not be processed
+- **401 Unauthorized** – Authentication required
+- **500 Internal Server Error** – Unexpected condition on the server

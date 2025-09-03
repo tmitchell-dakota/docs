@@ -1,0 +1,40 @@
+---
+title: 'Member Comments API'
+openapi: 'POST /index.php/api/dakota'
+---
+
+## How to Use
+
+1. **Copy** any of the JSON examples below.
+2. **Go to the API playground** by clicking on the **"Try it"** button.
+3. **Paste** the JSON into the request body field.
+4. **Click "Send"** button to execute the request.
+
+## Examples
+
+### Count Member Comment Records
+```json
+{
+  "module": "member_comments__c",
+  "count_only": "1"
+}
+```
+
+### List All Member Comments
+```json
+{
+  "module": "member_comments__c"
+}
+```
+
+### List Member Comments with Specific Fields
+```json
+{
+  "module": "member_comments__c",
+  "filters": {
+    "fields": ["name", "createddate", "comment_type__c"],
+    "order_by": "name:DESC",
+    "max_num": "-1"
+  }
+}
+``` 

@@ -1,0 +1,40 @@
+---
+title: 'Manager Presentation API'
+openapi: 'POST /index.php/api/dakota'
+---
+
+## How to Use
+
+1. **Copy** any of the JSON examples below.
+2. **Go to the API playground** by clicking on the **"Try it"** button.
+3. **Paste** the JSON into the request body field.
+4. **Click "Send"** button to execute the request.
+
+## Examples
+
+### Count Manager Presentation Records
+```json
+{
+  "module": "manager_presentation__c",
+  "count_only": "1"
+}
+```
+
+### List All Manager Presentations
+```json
+{
+  "module": "manager_presentation__c"
+}
+```
+
+### List Manager Presentations with Specific Fields
+```json
+{
+  "module": "manager_presentation__c",
+  "filters": {
+    "fields": ["name", "createddate", "presentation_type__c"],
+    "order_by": "name:DESC",
+    "max_num": "-1"
+  }
+}
+``` 

@@ -1,0 +1,131 @@
+---
+title: 'Updates API'
+openapi: 'POST /index.php/api/dakota'
+---
+
+## How to Use
+
+1. **Copy** any of the JSON examples below.
+2. **Go to the API playground** by clicking on the **"Try it"** button.
+3. **Paste** the JSON into the request body field.
+4. **Click "Send"** button to execute the request.
+
+## Examples
+
+### Count Updates Records
+```json
+{
+  "module": "updates",
+  "count_only": "1"
+}
+```
+
+### List All Updates
+```json
+{
+  "module": "updates",
+  "filters": {
+    "fields": ["name", "createddate", "country__c"],
+    "order_by": "name:DESC",
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Updates Name
+```json
+{
+  "module": "updates",
+  "filters": {
+    "filter": [
+      {
+        "$and": [
+          {
+            "name": {
+              "$contains": "Adams"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Filter By CreatedDate
+```json
+{
+  "module": "updates",
+  "filters": {
+    "filter": [
+      {
+        "createddate": {
+          "$dateRange": "last_30_days"
+        }
+      }
+    ],
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Account Equals
+```json
+{
+  "module": "updates",
+  "filters": {
+    "filter": [
+      {
+        "account__c": {
+          "$equals": "0017600000TLTRkAAP"
+        }
+      }
+    ]
+  }
+}
+```
+
+### Filter By Posted Date Greater Than and Less Than
+```json
+{
+  "module": "updates",
+  "filters": {
+    "filter": [
+      {
+        "$and": [
+          {
+            "posted_date__c": {
+              "$gt": "2023-02-14"
+            }
+          },
+          {
+            "posted_date__c": {
+              "$lt": "2023-04-14"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Filter By Meeting Date Equals
+```json
+{
+  "module": "updates",
+  "filters": {
+    "filter": [
+      {
+        "$and": [
+          {
+            "meeting_date__c": {
+              "$equals": "2023-07-28"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+``` 

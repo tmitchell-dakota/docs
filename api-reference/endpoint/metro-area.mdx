@@ -1,0 +1,106 @@
+---
+title: 'Metro Area API'
+openapi: 'POST /index.php/api/dakota'
+---
+
+## How to Use
+
+1. **Copy** any of the JSON examples below.
+2. **Go to the API playground** by clicking on the **"Try it"** button.
+3. **Paste** the JSON into the request body field.
+4. **Click "Send"** button to execute the request.
+
+## Examples
+
+### Count Metro Area Records
+```json
+{
+  "module": "metro_area__c",
+  "count_only": "1"
+}
+```
+
+### List All Metro Areas
+```json
+{
+  "module": "metro_area__c"
+}
+```
+
+### List Metro Areas with Specific Fields
+```json
+{
+  "module": "metro_area__c",
+  "filters": {
+    "fields": ["name", "createddate", "country__c"],
+    "order_by": "name:DESC",
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Country (OR Example)
+```json
+{
+  "module": "metro_area__c",
+  "filters": {
+    "filter": [
+      {
+        "$or": [
+          {
+            "country__c": {
+              "$equals": "Afghanistan"
+            }
+          },
+          {
+            "country__c": {
+              "$equals": "Aland Islands"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Filter By Created Date (Last 30 Days)
+```json
+{
+  "module": "metro_area__c",
+  "filters": {
+    "filter": [
+      {
+        "createddate": {
+          "$dateRange": "last_30_days"
+        }
+      }
+    ],
+    "max_num": "-1"
+  }
+}
+```
+
+### Filter By Sort Order Range
+```json
+{
+  "module": "metro_area__c",
+  "filters": {
+    "filter": [
+      {
+        "$or": [
+          {
+            "sort_order__c": {
+              "$gte": "1000"
+            }
+          },
+          {
+            "sort_order__c": {
+              "$lte": "1500"
+            }
+          }
+        ]
+      }
+    ]
+  }
+} 

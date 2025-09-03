@@ -1,0 +1,62 @@
+---
+title: "Investment"
+description: "This page contains all the available fields for the Investment object in the Dakota system."
+---
+
+## Field Reference Table
+
+| Field Name | Label | Type | Length |
+|:-----------|:------|:-----|:-------|
+| `account_country__c` | Account Country | string | 1300 |
+| `account_name__c` | Account Name | string | 1300 |
+| `account__c` | Account | reference to: Account | 18 |
+| `active_passive__c` | Active/Passive | picklist | 255 |
+| `asset_class_picklist__c` | Asset Class | picklist | 255 |
+| `cusip__c` | CUSIP | string | 18 |
+| `category__c` | Industry | multipicklist | 4099 |
+| `closed_amount__c` | Closed Amount | currency | 0 |
+| `createdbyid` | Created By ID | reference to: User | 18 |
+| `createddate` | Created Date | datetime | 0 |
+| `description__c` | Description | textarea | 131072 |
+| `fees__c` | Fees | string | 255 |
+| `final_close_date__c` | Final Close Date | date | 0 |
+| `firm_name__c` | Firm Name | reference to: Account | 18 |
+| `fund_type__c` | Fund Type | picklist | 255 |
+| `fundraising_status__c` | Fundraising Status | picklist | 255 |
+| `geography__c` | Geography | multipicklist | 4099 |
+| `hard_cap__c` | Hard Cap | currency | 0 |
+| `id` | Record ID | id | 18 |
+| `inception_date__c` | Inception Date | date | 0 |
+| `investment_strategy_id_case_safe__c` | Investment Strategy ID (Case Safe) | string | 1300 |
+| `investment_strategy_verified__c` | Investment Strategy Verified | boolean | 0 |
+| `investment_minimum__c` | Investment minimum | currency | 0 |
+| `isdeleted` | Deleted | boolean | 0 |
+| `lastmodifiedbyid` | Last Modified By ID | reference to: User | 18 |
+| `lastmodifieddate` | Last Modified Date | datetime | 0 |
+| `lastreferenceddate` | Last Referenced Date | datetime | 0 |
+| `lastvieweddate` | Last Viewed Date | datetime | 0 |
+| `last_modified_date__c` | Last Modified Date | date | 0 |
+| `name` | Investment Strategy Name | string | 80 |
+| `ownerid` | Owner ID | reference to: Group | 18 |
+| `performance_10yr__c` | Performance 10yr | percent | 0 |
+| `performance_1yr__c` | Performance 1yr | percent | 0 |
+| `performance_3yr__c` | Performance 3yr | percent | 0 |
+| `performance_5yr__c` | Performance 5yr | percent | 0 |
+| `performance_as_of_date__c` | Performance As Of Date | date | 0 |
+| `performance_since_inception__c` | Since Inception IRR | percent | 0 |
+| `platform_availability__c` | Platform Availability | boolean | 0 |
+| `product_structure__c` | Product Structure | picklist | 255 |
+| `recordtypeid` | Record Type ID | reference to: RecordType | 18 |
+| `record_type_name__c` | Record Type Name | string | 1300 |
+| `sales_contact_email__c` | Sales Contact Email | string | 1300 |
+| `sales_contact__c` | Sales Contact | reference to: Contact | 18 |
+| `strategy_aum__c` | Strategy AUM | currency | 0 |
+| `sub_advised__c` | Sub-Advised | boolean | 0 |
+| `sub_asset_class__c` | Sub-Asset Class | picklist | 255 |
+| `systemmodstamp` | System Modstamp | datetime | 0 |
+| `target_size__c` | Target Size | currency | 0 |
+| `targeted_irr_from__c` | Targeted IRR From | percent | 0 |
+| `targeted_irr_to__c` | Targeted IRR To | percent | 0 |
+| `targeted_irr__c` | Targeted IRR | string | 1300 |
+| `ticker__c` | Ticker | string | 6 |
+| `website__c` | Website | url | 255 | 

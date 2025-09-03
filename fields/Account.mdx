@@ -1,0 +1,135 @@
+---
+title: "Account"
+description: "This page contains all the available fields for the Account object in the Dakota system."
+---
+
+## Field Reference Table
+
+| Field Name | Label | Type | Length |
+|:-----------|:------|:-----|:-------|
+| `ack_id__c` | ACK ID | string | 50 |
+| `aum__c` | AUM | currency | 0 |
+| `accounts_merged_description__c` | Accounts Merged Description | textarea | 32768 |
+| `active_draft_trial__c` | Active Marketplace Trial | boolean | 0 |
+| `alternative_platform_description__c` | Alternative Platform Description | textarea | 130000 |
+| `assets_boy__c` | Assets BOY | currency | 0 |
+| `average_ticket_size__c` | Average Ticket Size | currency | 0 |
+| `bank_loans__c` | Bank Loans | picklist | 255 |
+| `billingcity` | Billing City | string | 40 |
+| `billingcountry` | Billing Country | string | 80 |
+| `billinglatitude` | Billing Latitude | double | 0 |
+| `billinglongitude` | Billing Longitude | double | 0 |
+| `billingpostalcode` | Billing Zip/Postal Code | string | 20 |
+| `billingstate` | Billing State/Province | string | 80 |
+| `billingstreet` | Billing Street | textarea | 255 |
+| `board_meeting_notes__c` | Board Meeting Notes | url | 255 |
+| `cit_usage__c` | CIT Usage | picklist | 255 |
+| `cmbs__c` | CMBS | picklist | 255 |
+| `crd__c` | CRD# | string | 18 |
+| `client_base__c` | Client Base | multipicklist | 4099 |
+| `co_investments__c` | Co-Investments | picklist | 255 |
+| `convertibles__c` | Convertibles | picklist | 255 |
+| `copyright__c` | Copyright | string | 255 |
+| `core_bonds__c` | Core Bonds | picklist | 255 |
+| `createddate` | Created Date | datetime | 0 |
+| `cryptocurrency__c` | Cryptocurrency | picklist | 255 |
+| `current_searches__c` | Current Searches | url | 255 |
+| `custodian_s__c` | Custodian(s) | multipicklist | 4099 |
+| `dc_consultant_name__c` | DC Consultant Name | string | 1300 |
+| `dc_consultant__c` | DC Consultant | reference to: Account | 18 |
+| `date_received__c` | Date Received | date | 0 |
+| `description` | Account Description | textarea | 32000 |
+| `discretionary_assets__c` | Discretionary Assets | currency | 0 |
+| `ein__c` | EIN | string | 20 |
+| `etf_usage__c` | ETF Usage | picklist | 255 |
+| `emerging_manager_program__c` | Emerging Manager Program | picklist | 255 |
+| `emerging_market_bonds__c` | Emerging Market Bonds | picklist | 255 |
+| `emerging_market_equities__c` | Emerging Market Equities | picklist | 255 |
+| `external_manager_link__c` | External Manager Link | url | 255 |
+| `firm_commentary__c` | Firm Commentary | url | 255 |
+| `form_5500_pdf__c` | Form 5500 PDF | string | 1300 |
+| `form_adv_part_2a_brochure__c` | Form ADV Part 2A Brochure | url | 255 |
+| `general_consultant_2_name__c` | General Consultant 2 Name | string | 1300 |
+| `general_consultant_2__c` | General Consultant 2 | reference to: Account | 18 |
+| `general_consultant_name__c` | Consultant 1 Name | string | 1300 |
+| `general_consultant__c` | General Consultant | reference to: Account | 18 |
+| `global_equities__c` | Global Equities | picklist | 255 |
+| `government_bonds__c` | Government Bonds | picklist | 255 |
+| `hedge_fof__c` | Hedge FOF | picklist | 255 |
+| `hedge_fund_consultant_name__c` | Hedge Fund Consultant Name | string | 1300 |
+| `hedge_fund_consultant__c` | Hedge Fund Consultant | reference to: Account | 18 |
+| `hedge_funds__c` | Hedge Funds | picklist | 255 |
+| `high_yield_bonds__c` | High Yield Bonds | picklist | 255 |
+| `id` | Account ID | id | 18 |
+| `international_equities__c` | International Equities | picklist | 255 |
+| `investment_policy_statement__c` | Investment Policy Statement | url | 255 |
+| `investments_page__c` | Investments Page | url | 255 |
+| `investments_team_page__c` | Investments Team Page | url | 255 |
+| `invests_in_impact_sri_or_esg__c` | Invests in Impact, SRI or ESG | picklist | 255 |
+| `isdeleted` | Deleted | boolean | 0 |
+| `lp_power_user__c` | LP Power User | picklist | 255 |
+| `lp_usage__c` | LP Usage | picklist | 255 |
+| `large_cap_equities__c` | Large Cap Equities | picklist | 255 |
+| `lastmodifieddate` | Last Modified Date | datetime | 0 |
+| `liquid_alternatives__c` | Liquid Alternatives | picklist | 255 |
+| `mbs__c` | MBS | picklist | 255 |
+| `main_page__c` | Main Page | url | 255 |
+| `metroarea__c` | Metro Area | reference to: Metro_Area__c | 18 |
+| `metro_area_name__c` | Metro Area Name | string | 1300 |
+| `micro_cap_us_equities__c` | Micro Cap US Equities | picklist | 255 |
+| `mid_cap_equities__c` | Mid Cap Equities | picklist | 255 |
+| `minicipal_bonds__c` | Municipal Bonds | picklist | 255 |
+| `models__c` | Models | picklist | 255 |
+| `mutual_fund_family_name__c` | Mutual Fund Family Name | string | 50 |
+| `mutual_fund_usage__c` | Mutual Fund Usage | picklist | 255 |
+| `name` | Account Name | string | 255 |
+| `news_page__c` | News Page | url | 255 |
+| `non_discretionary_assets__c` | Non-Discretionary Assets | currency | 0 |
+| `not_synced_with_fuse__c` | Not synced with Fuse | picklist | 255 |
+| `number_of_qps__c` | # of QPs | double | 0 |
+| `ocio_business__c` | OCIO Business | picklist | 255 |
+| `opportunity_description__c` | Opportunity Description | textarea | 131072 |
+| `pn__c` | PN | string | 4 |
+| `parentid` | Parent Account ID | reference to: Account | 18 |
+| `parent_account__c` | Parent Account | reference to: Account | 18 |
+| `participants_eoy__c` | Participants EOY | double | 0 |
+| `phone` | Account Phone | phone | 40 |
+| `plan_codes__c` | Plan Codes | string | 50 |
+| `plan_type__c` | Plan Type | picklist | 255 |
+| `plan_year__c` | Plan Year | string | 4 |
+| `platform_description__c` | Platform Description | textarea | 131072 |
+| `preferred_investment_vehicle__c` | Preferred Investment Vehicle | picklist | 255 |
+| `private_credit_consultant_name__c` | Private Credit Consultant Name | string | 1300 |
+| `private_credit_consultant__c` | Private Credit Consultant | reference to: Account | 18 |
+| `private_credit__c` | Private Credit | picklist | 255 |
+| `private_equity_consultant_name__c` | Private Equity Consultant Name | string | 1300 |
+| `private_equity_consultant__c` | Private Equity Consultant | reference to: Account | 18 |
+| `private_equity_fof__c` | Private Equity FOF | picklist | 255 |
+| `private_equity__c` | Private Equity | picklist | 255 |
+| `private_real_estate__c` | Private Real Estate | picklist | 255 |
+| `quarterly_annual_report__c` | Quarterly/Annual Report | url | 255 |
+| `ric_usage__c` | RIC Usage | picklist | 255 |
+| `real_assets__c` | Real Assets | picklist | 255 |
+| `real_estate_consultant_name__c` | Real Estate Consultant Name | string | 1300 |
+| `real_estate_consultant__c` | Real Estate Consultant | reference to: Account | 18 |
+| `real_estate_fof__c` | Real Estate FOF | picklist | 255 |
+| `recordtypeid` | Record Type ID | reference to: RecordType | 18 |
+| `research_team_overview__c` | Research Team Overview | textarea | 131072 |
+| `select_lists__c` | Select Lists | picklist | 255 |
+| `separate_account_usage__c` | Separate Account Usage | picklist | 255 |
+| `small_cap_equities__c` | Small Cap Equities | picklist | 255 |
+| `sub_advised_mf_family__c` | Sub-Advised MF Family | string | 100 |
+| `systemmodstamp` | System Modstamp | datetime | 0 |
+| `tamp_name__c` | TAMP Name | string | 1300 |
+| `tamp__c` | TAMP | reference to: Account | 18 |
+| `total_participants__c` | Total Participants | double | 0 |
+| `type` | Account Type | picklist | 255 |
+| `ucits_usage__c` | UCITS Usage | picklist | 255 |
+| `uhnw_division_name__c` | UHNW Division Name | string | 1300 |
+| `uhnw_division__c` | UHNW Division | reference to: Account | 18 |
+| `uma_usage__c` | UMA Usage | picklist | 255 |
+| `unconstrained__c` | Unconstrained | picklist | 255 |
+| `venture_capital__c` | Venture Capital | picklist | 255 |
+| `website` | Website | url | 255 |
+| `x100_marketplace__c` | 100% Marketplace | boolean | 0 |
+| `x1031_exchange__c` | 1031 Exchange | picklist | 255 |
