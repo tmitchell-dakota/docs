@@ -3,12 +3,15 @@
   "theme": "mint",
   "name": "Dakota",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0A9CE8",
+    "light": "#0A9CE8",
+    "dark": "#0A9CE8"
   },
   "css": [
     "custom.css"
+  ],
+  "scripts": [
+    "auth-global.js"
   ],
   "favicon": "/favicon.svg",
   "navigation": {
@@ -18,12 +21,14 @@
         "groups": [
           {
             "group": "Get started",
+            "icon": "rocket",
             "pages": [
               "index"
             ]
           },
           {
             "group": "Fields",
+            "icon": "database",
             "pages": [
               "fields/Account",
               "fields/Contact",
@@ -41,91 +46,113 @@
         "tab": "API Reference",
         "groups": [
           {
+            "group": "Overview",
+            "icon": "book-open",
+            "pages": [
+              "api-reference/index"
+            ]
+          },
+          {
             "group": "Authentication API",
+            "icon": "shield",
             "pages": [
               "api-reference/endpoint/auth"
             ]
           },
           {
             "group": "Accounts API",
+            "icon": "users",
             "pages": [
               "api-reference/endpoint/accounts"
             ]
           },
           {
             "group": "Contacts API",
+            "icon": "user",
             "pages": [
               "api-reference/endpoint/contacts"
             ]
           },
           {
             "group": "Metro Area API",
+            "icon": "map",
             "pages": [
               "api-reference/endpoint/metro-area"
             ]
           },
           {
             "group": "Marketplace Searches API",
+            "icon": "magnifying-glass",
             "pages": [
               "api-reference/endpoint/marketplace-searches"
             ]
           },
           {
             "group": "Investment API",
+            "icon": "hand-holding-dollar",
             "pages": [
               "api-reference/endpoint/investment"
             ]
           },
           {
             "group": "Public Plan Minutes API",
+            "icon": "file",
             "pages": [
               "api-reference/endpoint/public-plan-minutes"
             ]
           },
           {
             "group": "Conference API",
+            "icon": "calendar",
             "pages": [
               "api-reference/endpoint/conference"
             ]
           },
           {
             "group": "Manager Presentation API",
+            "icon": "person-chalkboard",
             "pages": [
               "api-reference/endpoint/manager-presentation"
             ]
           },
           {
             "group": "Investment Strategy API",
+            "icon": "bullseye",
             "pages": [
               "api-reference/endpoint/investment-strategy"
             ]
           },
           {
             "group": "Dakota Content API",
+            "icon": "folder",
             "pages": [
               "api-reference/endpoint/dakota-content"
             ]
           },
           {
             "group": "Updates API",
+            "icon": "rotate",
             "pages": [
               "api-reference/endpoint/updates"
             ]
           },
           {
             "group": "Member Comments API",
+            "icon": "comments",
             "pages": [
               "api-reference/endpoint/member-comments"
             ]
           },
           {
             "group": "Dakota News API",
+            "icon": "newspaper",
             "pages": [
               "api-reference/endpoint/dakota-news"
             ]
           },
           {
             "group": "Custom Account Contact Relation API",
+            "icon": "link",
             "pages": [
               "api-reference/endpoint/custom-account-contact-relation"
             ]
@@ -145,18 +172,6 @@
       "label": "Dakota Site",
       "href": "https://www.dakota.com/"
     }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
   },
   "footer": {
     "socials": {

@@ -1,4 +1,168 @@
+/* IMMEDIATE HIDE - Runs before JavaScript */
+/* Hide everything by default, show only when authenticated */
+body {
+  visibility: hidden !important;
+}
+
+body.authenticated {
+  visibility: visible !important;
+}
+
+/* Hide all navigation elements immediately */
+nav, header, aside, footer, 
+[role="navigation"], [role="complementary"],
+.sidebar, .navigation, .nav, .header, .aside, .footer,
+[data-testid="sidebar"], [data-testid="header"], [data-testid="navigation"],
+.mintlify-sidebar, .mintlify-header, .mintlify-navigation,
+.navbar, .nav-bar, .side-nav, .side-navigation,
+.main-nav, .primary-nav, .secondary-nav {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Show content only when authenticated */
+body.authenticated nav,
+body.authenticated header,
+body.authenticated aside,
+body.authenticated footer,
+body.authenticated [role="navigation"],
+body.authenticated [role="complementary"],
+body.authenticated .sidebar,
+body.authenticated .navigation,
+body.authenticated .nav,
+body.authenticated .header,
+body.authenticated .aside,
+body.authenticated .footer,
+body.authenticated [data-testid="sidebar"],
+body.authenticated [data-testid="header"],
+body.authenticated [data-testid="navigation"],
+body.authenticated .mintlify-sidebar,
+body.authenticated .mintlify-header,
+body.authenticated .mintlify-navigation {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  width: auto !important;
+  overflow: visible !important;
+}
+
+/* Original styles */
 textarea.text-playground-input {
   min-height: 45dvh !important;  /* default bigger height */
   line-height: 1.5;              /* make text spacing nicer */
 }
+
+/* Image watermark styling - responsive breakpoints */
+
+/* Mobile (default) - smaller */
+body::after {
+  content: "";
+  display: none;
+  position: fixed;
+  bottom: 0px;
+  right: -60px;
+  width: 120px;
+  height: 140px;
+  background-image: url('/watermark.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.3;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Small screens (640px+) */
+@media (min-width: 640px) {
+  body::after {
+    display: block;
+    right: -50px;
+    width: 160px;
+    height: 180px;
+    opacity: 0.3;
+  }
+}
+
+/* Medium screens (768px+) */
+@media (min-width: 768px) {
+  body::after {
+    display: block;
+    right: -45px;
+    width: 200px;
+    height: 230px;
+    opacity: 0.3;
+  }
+}
+
+/* Large screens (1024px+) */
+@media (min-width: 1024px) {
+  body::after {
+    display: block;
+    right: -40px;
+    width: 200px;
+    height: 230px;
+    opacity: 0.3;
+  }
+}
+
+/* Extra large screens (1280px+) */
+@media (min-width: 1280px) {
+  body::after {
+    display: block;
+    bottom: -10px;
+    right: -40px;
+    width: 280px;
+    height: 380px;
+    opacity: 0.8;
+  }
+}
+
+/* 2XL screens (1536px+) - smaller than original */
+@media (min-width: 1400px) {
+  body::after {
+    display: block;
+    bottom: -25px;
+    right: -40px;
+    width: 300px;
+    height: 400px;
+    opacity: 0.8;
+  }
+}
+
+@media (min-width: 1650px) {
+  body::after {
+    display: block;
+    bottom: -25px;
+    right: -40px;
+    width: 450px;
+    height: 600px;
+    opacity: 0.8;
+  }
+}
+
+.card {
+  background-color: #edf8fd;
+}
+
+.code-block > div {
+  background-color: #f2f2f2;
+}
+
+.tryit-button {
+  background-color: #0A9CE8;
+}
+
+html.light .code-group > div:nth-child(1) {
+  background-color: #ffffff !important;
+}
+
+html.light .code-group > div:nth-child(2) > div > div {
+  background-color: #f2f2f2 !important;
+}
+
