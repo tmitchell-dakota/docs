@@ -168,6 +168,45 @@
     }
   }
   
+  // Watermark visibility based on ?playground=open
+  function getUrlFromArg(arg) {
+    try {
+      if (!arg) return window.location.href;
+      const url = new URL(arg, window.location.origin);
+      return url.href;
+    } catch (_) {
+      return window.location.href;
+    }
+  }
+  
+  function isPlaygroundOpenFromHref(href) {
+    try {
+      const url = new URL(href, window.location.origin);
+      return url.searchParams.get('playground') === 'open';
+    } catch (_) {
+      return false;
+    }
+  }
+  
+  function setWatermarkVisibility(visible) {
+    try {
+      let styleEl = document.getElementById('watermark-visibility-style');
+      if (!styleEl) {
+        styleEl = document.createElement('style');
+        styleEl.id = 'watermark-visibility-style';
+        document.head.appendChild(styleEl);
+      }
+      styleEl.textContent = visible
+        ? 'body::after{display:block !important;}'
+        : 'body::after{display:none !important;}';
+    } catch (_) {}
+  }
+  
+  function updateWatermarkVisibilityForUrl(href) {
+    const isOpen = isPlaygroundOpenFromHref(href);
+    setWatermarkVisibility(!isOpen);
+  }
+  
   // Generate login HTML
   function generateLoginHTML() {
     return `<!DOCTYPE html>
@@ -775,6 +814,9 @@
       showGlobalLoader();
     }
     
+    // Update watermark based on current URL
+    updateWatermarkVisibilityForUrl(window.location.href);
+    
     const token = localStorage.getItem(AUTH_CONFIG.tokenKey);
     if (!token) {
       hideGlobalLoader();
@@ -827,6 +869,8 @@
       originalPushState.apply(history, arguments);
       setTimeout(() => {
         const nextPath = getPathnameFromArg(arguments[2]);
+        const nextHref = getUrlFromArg(arguments[2]);
+        updateWatermarkVisibilityForUrl(nextHref);
         if (shouldShowLoaderForPath(nextPath)) {
           showGlobalLoader();
         }
@@ -838,6 +882,8 @@
       originalReplaceState.apply(history, arguments);
       setTimeout(() => {
         const nextPath = getPathnameFromArg(arguments[2]);
+        const nextHref = getUrlFromArg(arguments[2]);
+        updateWatermarkVisibilityForUrl(nextHref);
         if (shouldShowLoaderForPath(nextPath)) {
           showGlobalLoader();
         }
@@ -853,6 +899,11 @@
       hideGlobalLoader();
       window.location.href = AUTH_CONFIG.loginPath;
     }
+  });
+  
+  // Handle browser navigation (back/forward)
+  window.addEventListener('popstate', function() {
+    updateWatermarkVisibilityForUrl(window.location.href);
   });
   
   // Listen for window resize events to handle responsive navigation

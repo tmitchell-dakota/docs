@@ -75,7 +75,7 @@
           },
           {
             "group": "Metro Area API",
-            "icon": "map",
+            "icon": "map-pin",
             "pages": [
               "api-reference/endpoint/metro-area"
             ]
