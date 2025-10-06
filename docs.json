@@ -21,14 +21,12 @@
         "groups": [
           {
             "group": "Get started",
-            "icon": "rocket",
             "pages": [
               "index"
             ]
           },
           {
             "group": "Fields",
-            "icon": "database",
             "pages": [
               "fields/Account",
               "fields/Contact",

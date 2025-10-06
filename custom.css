@@ -171,3 +171,18 @@ html.light .code-group > div:nth-child(2) > div > div {
   background-color: #f2f2f2 !important;
 }
 
+a.group {
+  align-items: flex-start !important;
+}
+
+div.sidebar-group-header {
+  align-items: flex-start !important;
+}
+
+div.sidebar-group-header > svg {
+  margin-top: 5px !important;
+}
+
+a.group > svg {
+  margin-top: 5px !important;
+}
